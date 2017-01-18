@@ -6,6 +6,7 @@ import javaee7.concurrency.ReportTask;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,12 +25,16 @@ public class ConcurrencyController {
   private ManagedExecutorService executorService;
 
   @Inject
+  private Instance<ReportTask> reportTaskInstance;
+
+  @Inject
   private CalculationService calculationService;
 
   @POST
   @Path("/report")
   public String send() {
-    executorService.execute(new ReportTask());
+    ReportTask reportTask = reportTaskInstance.get();
+    executorService.execute(reportTask);
 
     return "Preparing the report...";
   }

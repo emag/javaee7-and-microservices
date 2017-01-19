@@ -1,0 +1,16 @@
+swarm:
+  http:
+    certificate.alias: selfsigned
+    keystore:
+      password: password
+      path: keystore.jks
+---
+project:
+  stage: production
+swarm:
+  undertow:
+    servers:
+      default-server:
+        http-listeners:
+          default:
+            enabled: false

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>microservices</groupId>
+    <artifactId>zipkin</artifactId>
+    <version>2017.1.1</version>
+  </parent>
+
+  <artifactId>brave-tracing-feature</artifactId>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jboss.spec.javax.ws.rs</groupId>
+      <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+      <version>${version.jboss-jaxrs-api_2.0_spec}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.zipkin.brave</groupId>
+      <artifactId>brave-jaxrs2</artifactId>
+      <version>${version.brave}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.zipkin.brave</groupId>
+      <artifactId>brave-http</artifactId>
+      <version>${version.brave}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.zipkin.brave</groupId>
+      <artifactId>brave-core</artifactId>
+      <version>${version.brave}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+</project>

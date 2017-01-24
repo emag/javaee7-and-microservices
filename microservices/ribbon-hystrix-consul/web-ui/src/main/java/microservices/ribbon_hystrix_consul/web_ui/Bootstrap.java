@@ -12,9 +12,8 @@ public class Bootstrap {
 
     WARArchive archive = ShrinkWrap.create(WARArchive.class, "web-ui.war");
     archive.staticContent();
-//    archive.addAllDependencies();
-
-//    archive.as(TopologyArchive.class).advertise();
+    archive.addAllDependencies();
+    archive.as(TopologyArchive.class).advertise();
 
     swarm.start().deploy(archive);
   }

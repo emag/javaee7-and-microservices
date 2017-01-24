@@ -5,7 +5,7 @@
 
   <groupId>microservices</groupId>
   <artifactId>ribbon-hystrix-consul</artifactId>
-  <version>2017.1.1</version>
+  <version>2016.10.0</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -40,6 +40,12 @@
           <groupId>org.wildfly.swarm</groupId>
           <artifactId>wildfly-swarm-plugin</artifactId>
           <version>${version.wildfly-swarm}</version>
+          <configuration>
+            <properties>
+              <swarm.bind.address>127.0.0.1</swarm.bind.address>
+              <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+            </properties>
+          </configuration>
           <executions>
             <execution>
               <goals>

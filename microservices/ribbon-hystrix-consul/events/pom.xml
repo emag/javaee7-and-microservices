@@ -37,10 +37,6 @@
           <mainClass>microservices.ribbon_hystrix_consul.events.Bootstrap</mainClass>
         </configuration>
       </plugin>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>${version.maven-war-plugin}</version>
-      </plugin>
     </plugins>
   </build>
 

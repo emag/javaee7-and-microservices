@@ -11,7 +11,7 @@ public class Bootstrap {
     Swarm swarm = new Swarm(args);
 
     JAXRSArchive archive = ShrinkWrap.create(JAXRSArchive.class, "time.war");
-    archive.addResource(TimeResource.class);
+    archive.addClasses(TimeResource.class, CORSFilter.class);
 
     archive.as(TopologyArchive.class).advertise();
 

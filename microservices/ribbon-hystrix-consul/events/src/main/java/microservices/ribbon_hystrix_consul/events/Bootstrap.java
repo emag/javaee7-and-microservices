@@ -12,7 +12,6 @@ public class Bootstrap {
 
     JAXRSArchive archive = ShrinkWrap.create(JAXRSArchive.class, "events.war");
     archive.addPackage(Bootstrap.class.getPackage());
-    archive.addAllDependencies();
 
     archive.as(RibbonArchive.class).advertise();
 

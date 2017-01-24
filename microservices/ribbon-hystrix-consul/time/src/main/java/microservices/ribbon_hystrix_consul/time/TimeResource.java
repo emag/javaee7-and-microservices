@@ -33,11 +33,6 @@ public class TimeResource {
     t.put("ms", now.getNano() / 1000 / 1000);
 
     return Response.ok(t, MediaType.APPLICATION_JSON_TYPE)
-      .header("Access-Control-Allow-Origin", "*")
-      .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-      .header("Access-Control-Allow-Credentials", "true")
-      .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD, undefined")
-      .header("Access-Control-Max-Age", "1209600")
       .entity(t)
       .build();
   }

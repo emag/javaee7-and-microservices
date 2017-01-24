@@ -1,41 +1,43 @@
-# Logstash Example
+# Logstash
 
-This example sends log messages to Logstash.
+Logstash にログを送信するサンプルです。
 
-> Please raise any issues found with this example in our JIRA:
-> https://issues.jboss.org/browse/SWARM
+## Docker / Docker Compose のインストール
 
-## Start Logstash
+Docker および Docker Compose をインストールします。
 
-### Local installed
+それぞれのインストールは下記ドキュメントを参照ください。
 
-``` sh
-cd $LOGSTASH_HOME
-bin/logstash -f /this/project/pipeline/logstash-wildfly.conf
-```
+* https://docs.docker.com/engine/installation/
+* https://docs.docker.com/compose/install/
 
-### Docker
+## Logstash の起動
 
-``` sh
-docker run --rm -it \
-  -v /this/project/pipeline:/usr/share/logstash/pipeline \
-  -p 9300:9300 \
-  docker.elastic.co/logstash/logstash:5.1.1
-```
-
-## Build & Run Example
+Logstash を含む Elastic Stack(Elasticsearch, Kibana) を起動します。
 
 ``` sh
-mvn clean package
-java -jar target/examples-logstash-swarm.jar
+docker-compose up -d
 ```
 
-## Example Requests
+## アプリケーションのビルドと実行
 
-If you access the app [APIs](#apis), you can see the following log in Logstash console.
+``` sh
+./mvnw clean package
+java -jar target/logstash-swarm.jar
+```
+
+## API へのアクセス
+
+各種ログレベルをわけた [APIs](#apis) があるのでアクセスします。
 
 ``` sh
 curl localhost:8080/info
+```
+
+Logstash は標準出力にも出力しているようにしているので、以下のようなログが確認できます。
+
+``` sh
+docker-compose logs -f logstash
 ```
 
 ```
@@ -45,18 +47,28 @@ curl localhost:8080/info
              "message" => "This is INFO message",
                  "ndc" => "",
                  "mdc" => {},
-          "threadName" => "default task-2",
+          "threadName" => "default task-1",
                 "tags" => [],
-            "threadId" => 162,
-            "sequence" => 27,
-          "@timestamp" => 2017-01-06T13:58:55.380Z,
-                "port" => 35318,
+            "threadId" => 161,
+            "sequence" => 26,
+          "@timestamp" => 2017-01-24T05:30:12.086Z,
+                "port" => 51842,
             "@version" => 1,
-                "host" => "127.0.0.1",
+                "host" => "172.23.0.1",
     "wildflySwarmNode" => "your-host-name",
-          "loggerName" => "org.wildfly.examples.swarm.logstash.MyResource"
+          "loggerName" => "microservices.logstash.MyResource"
 }
 ```
+
+## Kibana でのログ確認
+
+Kibana(http://localhost:5601/) にアクセスします。
+ 
+`Configure an index pattern` の画面に遷移するので、`Index name or pattern` に
+`wildfly-swarm-logstash` と入力して `Create` をクリックします。
+
+左のメニューから `Discover` をクリックし、ログが投入されていることを確認します。
+
 
 ### APIs
 
